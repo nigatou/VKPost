@@ -1,9 +1,10 @@
+import kotlin.math.roundToInt
+
 class Post(
-        val id: Int,
         val ownerId: Int,
         val fromId: Int,
         val createdBy: Int,
-        val date: Int,
+        var date: Int,
         val text: String,
         val replyOwnerId: Int,
         val replyPostId: Int,
@@ -22,4 +23,6 @@ class Post(
         val markedAsAds: Boolean,
         val isFavourite: Boolean,
         val postponedId: Int
-)
+) {
+    var id: Int = (Math.random() * 100000).roundToInt()
+}
