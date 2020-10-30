@@ -70,7 +70,7 @@ class WallServiceTest {
     @Test
     fun update2() {
         posts += post2
-        WallService.update(post2, post5)
+        WallService.update(post5)
 
         assertEquals(posts.last(), post2)
     }
@@ -78,7 +78,7 @@ class WallServiceTest {
     @Test
     fun update4Fail() {
         posts += post4
-        WallService.update(post4, post6)
+        WallService.update(post6)
 
         assertEquals(posts.last(), post3)
     }

@@ -12,9 +12,9 @@ object WallService {
         return true
     }
 
-    private fun getPostIndex(post: Post): Int {
+    private fun findPostIndexById(post: Post, posts: Array<Post>): Int {
         for (i in posts.indices) {
-            if (post == posts[i]) {
+            if (posts[i].id == post.id) {
                 return i
             }
         }
@@ -35,19 +35,14 @@ object WallService {
         return posts.last()
     }
 
-    fun update(post: Post, newPost: Post): Boolean {
-        if (findPost(post, posts)) {
-            val id = post.id
-            val date = post.date
+    fun update(newPost: Post): Boolean {
+        val index = findPostIndexById(newPost, posts)
 
-            val index = getPostIndex(post)
-
-            if (index != -1) {
-                newPost.id = id
-                newPost.date = date
-                posts[index] = newPost
-                return true
-            }
+        if (index != -1) {
+            newPost.id = posts[index].id
+            newPost.date = posts[index].date
+            posts[index] = newPost
+            return true
         }
         return false
     }

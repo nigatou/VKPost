@@ -37,6 +37,6 @@ fun main() {
     WallService.add(post2)
     WallService.add(post3)
     WallService.add(post4)
-    WallService.update(post2, post5)
-    WallService.update(post4, post6)
+    WallService.update(post5)
+    WallService.update(post6)
 }
