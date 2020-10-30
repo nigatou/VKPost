@@ -1,12 +1,13 @@
 import org.junit.Test
 
 import org.junit.Assert.*
+import kotlin.math.roundToInt
 
 class WallServiceTest {
 
     private var posts = emptyArray<Post>()
 
-    private val post1 = Post(
+    private val post = Post(
         1,
         1,
         1,
@@ -30,126 +31,13 @@ class WallServiceTest {
         isFavourite = true,
         postponedId = 1,
     )
-    private val post2 = Post(
-        1,
-        1,
-        1,
-        1,
-        "hello",
-        1,
-        1,
-        true,
-        emptyArray(),
-        "Hello",
-        emptyArray(),
-        emptyArray(),
-        emptyArray(),
-        "Hello",
-        1,
-        canPin = true,
-        canDelete = true,
-        canEdit = true,
-        isPinned = true,
-        markedAsAds = true,
-        isFavourite = true,
-        postponedId = 1,
-    )
-    val post3 = Post(
-            1,
-            1,
-            1,
-            1,
-            "hello",
-            1,
-            1,
-            true,
-            emptyArray(),
-            "Hello",
-            emptyArray(),
-            emptyArray(),
-            emptyArray(),
-            "Hello",
-            1,
-            canPin = true,
-            canDelete = true,
-            canEdit = true,
-            isPinned = true,
-            markedAsAds = true,
-            isFavourite = true,
-            postponedId = 1,
-    )
-    val post4 = Post(
-            1,
-            1,
-            1,
-            1,
-            "hello",
-            1,
-            1,
-            true,
-            emptyArray(),
-            "Hello",
-            emptyArray(),
-            emptyArray(),
-            emptyArray(),
-            "Hello",
-            1,
-            canPin = true,
-            canDelete = true,
-            canEdit = true,
-            isPinned = true,
-            markedAsAds = true,
-            isFavourite = true,
-            postponedId = 1,
-    )
-    val post5 = Post(
-            1,
-            1,
-            1,
-            1,
-            "hello",
-            1,
-            1,
-            true,
-            emptyArray(),
-            "Hello",
-            emptyArray(),
-            emptyArray(),
-            emptyArray(),
-            "Hello",
-            1,
-            canPin = true,
-            canDelete = true,
-            canEdit = true,
-            isPinned = true,
-            markedAsAds = true,
-            isFavourite = true,
-            postponedId = 1,
-    )
-    val post6 = Post(
-            1,
-            1,
-            1,
-            1,
-            "hello",
-            1,
-            1,
-            true,
-            emptyArray(),
-            "Hello",
-            emptyArray(),
-            emptyArray(),
-            emptyArray(),
-            "Hello",
-            1,
-            canPin = true,
-            canDelete = true,
-            canEdit = true,
-            isPinned = true,
-            markedAsAds = true,
-            isFavourite = true,
-            postponedId = 1,
-    )
+
+    private val post1 = post.copy(id = (Math.random() * 100000).roundToInt())
+    private val post2 = post.copy(id = (Math.random() * 100000).roundToInt())
+    private val post3 = post.copy(id = (Math.random() * 100000).roundToInt())
+    private val post4 = post.copy(id = (Math.random() * 100000).roundToInt())
+    private val post5 = post.copy(id = (Math.random() * 100000).roundToInt())
+    private val post6 = post.copy(id = (Math.random() * 100000).roundToInt())
 
     @Test
     fun add1() {
