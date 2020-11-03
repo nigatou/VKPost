@@ -1,3 +1,8 @@
+import attachments.Attachment
+import attachments.AudioAttachment
+import attachments.VideoAttachment
+import types.Audio
+import types.Video
 import kotlin.math.roundToInt
 
 fun main() {
@@ -39,4 +44,12 @@ fun main() {
     WallService.add(post4)
     WallService.update(post5)
     WallService.update(post6)
+
+    var attachedPosts = emptyArray<Attachment>()
+    val audio = Audio(1, "Audio",1)
+    val video = Video(2, "Video",1)
+    val audioAttachment = AudioAttachment(audio)
+    val videoAttachment = VideoAttachment(video)
+    attachedPosts += audioAttachment
+    attachedPosts += videoAttachment
 }
