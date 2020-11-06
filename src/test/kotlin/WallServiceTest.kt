@@ -1,3 +1,4 @@
+import exceptions.PostNotFoundException
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -39,10 +40,10 @@ class WallServiceTest {
     private val post5 = post.copy(id = (Math.random() * 100000).roundToInt())
     private val post6 = post.copy(id = (Math.random() * 100000).roundToInt())
 
-    val comment1 = Comment(1, post1.id, "Hello!", emptyArray())
-    val comment2 = Comment(2, post3.id, "Very nice!", emptyArray())
-    val comment3 = Comment(3, post3.id, "Eeew", emptyArray())
-    val comment4 = Comment(4, 346536, "Original, very", emptyArray())
+    private val comment1 = Comment(1, post1.id, "Hello!", emptyArray())
+    private val comment2 = Comment(2, post3.id, "Very nice!", emptyArray())
+    private val comment3 = Comment(3, post3.id, "Eeew", emptyArray())
+    private val comment4 = Comment(3, 4353, "Eeew", emptyArray())
 
     @Test
     fun add1() {
@@ -89,7 +90,7 @@ class WallServiceTest {
     }
 
     @Test(expected = PostNotFoundException::class)
-    fun shouldThrow() {
+     fun shouldThrow() {
         WallService.createComment(comment4)
     }
 

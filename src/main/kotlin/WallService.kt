@@ -1,10 +1,11 @@
+import exceptions.PostNotFoundException
 import kotlin.math.roundToInt
 
 object WallService {
     private var posts = emptyArray<Post>()
     private var comments = emptyArray<Comment>()
 
-    private fun findPost(post: Post, posts: Array<Post>): Boolean {
+    private fun findPost(post: Post): Boolean {
         for (uniquePost in posts) {
             if (uniquePost.id == post.id) {
                 return false
@@ -13,16 +14,16 @@ object WallService {
         return true
     }
 
-    private fun findPostById(postId: Int, posts: Array<Post>): Boolean {
+    private fun findPostById(postId: Int): Boolean {
         for (uniquePost in posts) {
             if (uniquePost.id == postId) {
-                return false
+                return true
             }
         }
-        return true
+        return false
     }
 
-    private fun findPostIndexById(post: Post, posts: Array<Post>): Int {
+    private fun findPostIndexById(post: Post): Int {
         for (i in posts.indices) {
             if (posts[i].id == post.id) {
                 return i
@@ -35,7 +36,7 @@ object WallService {
         var postIsUnique = false
 
         while (!postIsUnique) {
-            postIsUnique = findPost(post, posts)
+            postIsUnique = findPost(post)
             if (!postIsUnique) {
                 post.id = (Math.random() * 100000).roundToInt()
             }
@@ -46,7 +47,7 @@ object WallService {
     }
 
     fun update(newPost: Post): Boolean {
-        val index = findPostIndexById(newPost, posts)
+        val index = findPostIndexById(newPost)
 
         if (index != -1) {
             newPost.id = posts[index].id
@@ -58,11 +59,10 @@ object WallService {
     }
 
     fun createComment(comment: Comment) {
-        if (findPostById(comment.postId!!, posts)) {
+        if (findPostById(comment.postId!!)) {
             comments += comment
         } else {
-            val postNotFoundException = PostNotFoundException()
-            postNotFoundException.throwException()
+            throw PostNotFoundException("No post with id ${comment.postId}")
         }
     }
 }
