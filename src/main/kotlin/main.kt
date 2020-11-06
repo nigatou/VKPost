@@ -52,4 +52,14 @@ fun main() {
     val videoAttachment = VideoAttachment(video)
     attachedPosts += audioAttachment
     attachedPosts += videoAttachment
+
+    val comment1 = Comment(1, post1.id, "Hello!", emptyArray())
+    val comment2 = Comment(2, post3.id, "Very nice!", emptyArray())
+    val comment3 = Comment(3, post3.id, "Eeew", emptyArray())
+    val comment4 = Comment(4, post4.id, "Original, very", emptyArray())
+
+    WallService.createComment(comment1)
+    WallService.createComment(comment2)
+    WallService.createComment(comment3)
+    WallService.createComment(comment4)
 }

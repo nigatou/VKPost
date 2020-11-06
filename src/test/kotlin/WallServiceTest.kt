@@ -39,6 +39,11 @@ class WallServiceTest {
     private val post5 = post.copy(id = (Math.random() * 100000).roundToInt())
     private val post6 = post.copy(id = (Math.random() * 100000).roundToInt())
 
+    val comment1 = Comment(1, post1.id, "Hello!", emptyArray())
+    val comment2 = Comment(2, post3.id, "Very nice!", emptyArray())
+    val comment3 = Comment(3, post3.id, "Eeew", emptyArray())
+    val comment4 = Comment(4, 346536, "Original, very", emptyArray())
+
     @Test
     fun add1() {
         posts += post1
@@ -81,5 +86,21 @@ class WallServiceTest {
         WallService.update(post6)
 
         assertEquals(posts.last(), post3)
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun shouldThrow() {
+        WallService.createComment(comment4)
+    }
+
+    @Test
+    fun shouldNotThrow1() {
+        WallService.createComment(comment1)
+    }
+
+    @Test
+    fun shouldNotThrow2() {
+        WallService.createComment(comment2)
+        WallService.createComment(comment3)
     }
 }

@@ -2,10 +2,20 @@ import kotlin.math.roundToInt
 
 object WallService {
     private var posts = emptyArray<Post>()
+    private var comments = emptyArray<Comment>()
 
     private fun findPost(post: Post, posts: Array<Post>): Boolean {
         for (uniquePost in posts) {
             if (uniquePost.id == post.id) {
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun findPostById(postId: Int, posts: Array<Post>): Boolean {
+        for (uniquePost in posts) {
+            if (uniquePost.id == postId) {
                 return false
             }
         }
@@ -45,5 +55,14 @@ object WallService {
             return true
         }
         return false
+    }
+
+    fun createComment(comment: Comment) {
+        if (findPostById(comment.postId!!, posts)) {
+            comments += comment
+        } else {
+            val postNotFoundException = PostNotFoundException()
+            postNotFoundException.throwException()
+        }
     }
 }
