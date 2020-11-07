@@ -1,7 +1,8 @@
-import exceptions.PostNotFoundException
+import mainClasses.Post
 import org.junit.Test
 
 import org.junit.Assert.*
+import services.WallService
 import kotlin.math.roundToInt
 
 class WallServiceTest {
@@ -39,11 +40,6 @@ class WallServiceTest {
     private val post4 = post.copy(id = (Math.random() * 100000).roundToInt())
     private val post5 = post.copy(id = (Math.random() * 100000).roundToInt())
     private val post6 = post.copy(id = (Math.random() * 100000).roundToInt())
-
-    private val comment1 = Comment(1, post1.id, "Hello!", emptyArray())
-    private val comment2 = Comment(2, post3.id, "Very nice!", emptyArray())
-    private val comment3 = Comment(3, post3.id, "Eeew", emptyArray())
-    private val comment4 = Comment(3, 4353, "Eeew", emptyArray())
 
     @Test
     fun add1() {
@@ -87,21 +83,5 @@ class WallServiceTest {
         WallService.update(post6)
 
         assertEquals(posts.last(), post3)
-    }
-
-    @Test(expected = PostNotFoundException::class)
-     fun shouldThrow() {
-        WallService.createComment(comment4)
-    }
-
-    @Test
-    fun shouldNotThrow1() {
-        WallService.createComment(comment1)
-    }
-
-    @Test
-    fun shouldNotThrow2() {
-        WallService.createComment(comment2)
-        WallService.createComment(comment3)
     }
 }

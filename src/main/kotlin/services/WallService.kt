@@ -1,3 +1,7 @@
+package services
+
+import mainClasses.Comment
+import mainClasses.Post
 import exceptions.PostNotFoundException
 import kotlin.math.roundToInt
 
@@ -59,10 +63,10 @@ object WallService {
     }
 
     fun createComment(comment: Comment) {
-        if (findPostById(comment.postId!!)) {
+        if (findPostById(comment.parentId!!)) {
             comments += comment
         } else {
-            throw PostNotFoundException("No post with id ${comment.postId}")
+            throw PostNotFoundException("No post with id ${comment.parentId}")
         }
     }
 }

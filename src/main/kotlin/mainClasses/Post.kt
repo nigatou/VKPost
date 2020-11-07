@@ -1,3 +1,5 @@
+package mainClasses
+
 data class Post(
         val ownerId: Int?,
         val fromId: Int?,
