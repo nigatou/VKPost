@@ -1,9 +1,10 @@
 import attachments.Attachment
 import attachments.AudioAttachment
 import attachments.VideoAttachment
-import mainClasses.Comment
-import mainClasses.Post
+import mainClasses.*
+import services.ChatService
 import services.NoteService
+import services.UserService
 import services.WallService
 import types.Audio
 import types.Video
@@ -115,4 +116,80 @@ fun main() {
     for (note in notes) {
         NoteService.showNote(note.id)
     }
+
+    val user1 = User(11, "User1")
+    val user2 = User(12, "User2")
+    val user3 = User(13, "User3")
+    val user4 = User(14, "User4")
+    val user5 = User(15, "User5")
+    val user6 = User(16, "User6")
+
+    UserService.addUser(user1)
+    UserService.addUser(user2)
+    UserService.addUser(user3)
+    UserService.addUser(user4)
+    UserService.addUser(user5)
+    UserService.addUser(user6)
+
+    val message12 = Message(112, 11, "Hello User2!")
+    val message14 = Message(114, 11, "Hello User4!")
+    val message21 = Message(121, 12, "Hello User1!")
+    val message23 = Message(123, 12, "Hello User3!")
+    val message32 = Message(132, 13, "Hello User2!")
+    val message35 = Message(135, 13, "Hello User5!")
+    val message41 = Message(141, 14, "Hello User1!")
+    val message46 = Message(146, 14, "Hello User6!")
+    val message53 = Message(153, 15, "Hello User3!")
+    val message56 = Message(156, 15, "Hello User6!")
+    val message64 = Message(164, 16, "Hello User4!")
+    val message65 = Message(165, 16, "Hello User5!")
+
+    val chat12 = Chat(112, user1.id, user2.id, arrayOf(message12, message21))
+    val chat14 = Chat(114, user1.id, user4.id, arrayOf(message14, message41))
+    val chat23 = Chat(123, user2.id, user3.id, arrayOf(message23))
+    val chat35 = Chat(135, user3.id, user5.id, arrayOf(message35, message53))
+    val chat46 = Chat(146, user4.id, user6.id, arrayOf(message46, message64))
+    val chat56 = Chat(156, user5.id, user6.id, arrayOf(message56))
+
+    ChatService.addChat(chat12)
+    ChatService.addChat(chat14)
+    ChatService.addChat(chat23)
+    ChatService.addChat(chat35)
+    ChatService.addChat(chat46)
+    ChatService.addChat(chat56)
+
+    ChatService.createMessage(123, message32)
+    ChatService.createMessage(156, message65)
+
+    println("------------------------------------------------------------------------------")
+
+    println("You have " + ChatService.getUnreadChatsCount().toString() + " unread messages")
+
+    ChatService.getChats()
+
+    println("You have " + ChatService.getUnreadChatsCount().toString() + " unread messages")
+
+    println("------------------------------------------------------------------------------")
+
+    ChatService.getChats(11)
+
+    println("------------------------------------------------------------------------------")
+
+    ChatService.editMessage(message12, "Hello, User2! This is edited message")
+    ChatService.editMessage(message46, "Hello, User6! This is edited message")
+
+    ChatService.getChats()
+
+    println("------------------------------------------------------------------------------")
+
+    ChatService.removeChat(114)
+
+    ChatService.getChats()
+
+    println("------------------------------------------------------------------------------")
+
+    ChatService.removeMessage(123)
+    ChatService.removeMessage(164)
+
+    ChatService.getChats()
 }

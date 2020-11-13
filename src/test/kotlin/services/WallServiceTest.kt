@@ -1,8 +1,9 @@
+package services
+
 import mainClasses.Post
 import org.junit.Test
 
 import org.junit.Assert.*
-import services.WallService
 import kotlin.math.roundToInt
 
 class WallServiceTest {

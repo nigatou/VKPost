@@ -1,4 +1,4 @@
-##What has been removed
+## What has been removed
 
 1. Add
     * privacyView
@@ -32,11 +32,11 @@
     * ownerId
     * needWiki
     
-1. getComments
+1. GetComments
     * ownerId
     * sort
     * offset
     * count
     
-1. restoreComment
+1. RestoreComment
     * ownerId
